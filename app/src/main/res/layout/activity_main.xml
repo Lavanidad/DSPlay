@@ -13,6 +13,19 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:title="@string/app_name"
+            android:theme="@style/AppTheme.ToolBar"
+            >
+
+        </android.support.v7.widget.Toolbar>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
