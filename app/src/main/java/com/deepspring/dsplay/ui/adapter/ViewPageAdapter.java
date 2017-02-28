@@ -31,9 +31,6 @@ public class ViewPageAdapter extends FragmentStatePagerAdapter{
         mFragments.add(new FragmentInfo("排行", RankingFragment.class));
         mFragments.add(new FragmentInfo("游戏", GamesFragment.class));
         mFragments.add(new FragmentInfo("分类", CategoryFragment.class));
-
-
-
     }
 
     @Override
@@ -46,21 +43,6 @@ public class ViewPageAdapter extends FragmentStatePagerAdapter{
             e.printStackTrace();
         }
         return  null;
-//        switch (position){
-//            case 0:
-//                fragment = new RecommendFragment();
-//                break;
-//            case 1:
-//                fragment = new RankingFragment();
-//                break;
-//            case 2:
-//                fragment = new GamesFragment();
-//                break;
-//            case 3:
-//                fragment = new CategoryFragment();
-//                break;
-//        }
-//        return fragment;
     }
 
     @Override
