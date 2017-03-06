@@ -8,257 +8,393 @@ import java.io.Serializable;
 
 public class AppInfo implements Serializable {
 
-    /**
-     * adType : 0
-     * ads : 0
-     * apkSize : 611780185
-     * appendSize : 0
-     * briefShow : 唯美和风 奇幻之旅
-     * briefUseIntro : false
-     * displayName : 阴阳师
-     * icon : AppStore/088d184422af941b529836c4c0cf9504810ab9446
-     * id : 395801
-     * level1CategoryId : 15
-     * level1CategoryName : 游戏
-     * level2CategoryId : 19
-     * packageName : com.netease.onmyoji.mi
-     * position : 0
-     * publisherName : 杭州网易雷火科技有限公司
-     * rId : 0
-     * ratingScore : 3.5
-     * releaseKeyHash : ef931f7785b34fd2da077eaaf42542d9
-     * screenshot : AppStore/0e8f5355aa8b04e330e1f2e0c44def4169aabfcb4,AppStore/0c8f5355aa8b04e340e1fbe0c48def4569aa1fcb4,AppStore/058885d6033f83464ff3478801734e310a442253e,AppStore/068f5355aa8804e3a0e1f4e0c4cdef4569aaffcb4,AppStore/08361c479d4824757150e47737e752af67590aa18
-     * source :
-     * suitableType : 2
-     * updateTime : 1482830816276
-     * versionCode : 14
-     * versionName : 1.0.14
-     * videoId : 678
-     */
+        /**
+         * addTime : 0
+         * hasSameDevApp : false
+         * videoId : 0
+         * source :
+         * versionName : 7.8.6
+         * hdIcon : {"main":"AppStore/02d455182b6b0dccb2f490e29d6257f69ac43fab3"}
+         * ratingScore : 4.5
+         * briefShow : 吃喝玩乐，应有尽有，优惠多多
+         * developerId : 0
+         * fitness : 0
+         * id : 98
+         * level1CategoryId : 9
+         * releaseKeyHash : c4706130e3aa946812dd424d06b24858
+         * relateAppHasMore : false
+         * rId : 0
+         * suitableType : 0
+         * briefUseIntro : false
+         * ads : 0
+         * publisherName : 北京三快科技有限公司
+         * level2CategoryId : 161
+         * position : 0
+         * favorite : false
+         * isFavorite : false
+         * appendSize : 0
+         * level1CategoryName : 时尚购物
+         * samDevAppHasMore : false
+         * displayName : 美团
+         * icon : AppStore/0e1f1411e9e9f5381639c9fe89c36e3154243c2ba
+         * screenshot : AppStore/0fbc94230b7417ec0b29cd0c27afea4b9cc409cd5,AppStore/02bc95430c7b14ec7029c90c2cdfed4a92408ab9f,AppStore/07e7247bbaa6412d9ebb8b90f6073a581a543f385,AppStore/0fbc94230b7417ec0629c30c2bafeb4b9ec409cd5,AppStore/08b0d45da5d74cdcd15f0124bd3a5f00bdf434525
+         * ratingTotalCount : 0
+         * adType : 0
+         * apkSize : 34304592
+         * packageName : com.sankuai.meituan
+         * updateTime : 1488506397462
+         * grantCode : 0
+         * versionCode : 486
+         * diffFileSize : 0
+         */
 
-    private int adType;
-    private int ads;
-    private long apkSize;
-    private int appendSize;
-    private String briefShow;
-    private boolean briefUseIntro;
-    private String displayName;
-    private String icon;
-    private int id;
-    private int level1CategoryId;
-    private String level1CategoryName;
-    private int level2CategoryId;
-    private String packageName;
-    private int position;
-    private String publisherName;
-    private int rId;
-    private double ratingScore;
-    private String releaseKeyHash;
-    private String screenshot;
-    private String source;
-    private int suitableType;
-    private long updateTime;
-    private int versionCode;
-    private String versionName;
-    private int videoId;
+        private int addTime;
+        private boolean hasSameDevApp;
+        private int videoId;
+        private String source;
+        private String versionName;
+        private HdIconBean hdIcon;
+        private double ratingScore;
+        private String briefShow;
+        private int developerId;
+        private int fitness;
+        private int id;
+        private int level1CategoryId;
+        private String releaseKeyHash;
+        private boolean relateAppHasMore;
+        private int rId;
+        private int suitableType;
+        private boolean briefUseIntro;
+        private int ads;
+        private String publisherName;
+        private int level2CategoryId;
+        private int position;
+        private boolean favorite;
+        private boolean isFavorite;
+        private int appendSize;
+        private String level1CategoryName;
+        private boolean samDevAppHasMore;
+        private String displayName;
+        private String icon;
+        private String screenshot;
+        private int ratingTotalCount;
+        private int adType;
+        private int apkSize;
+        private String packageName;
+        private long updateTime;
+        private int grantCode;
+        private int versionCode;
+        private int diffFileSize;
 
-    public int getAdType() {
-        return adType;
-    }
+        public int getAddTime() {
+            return addTime;
+        }
 
-    public void setAdType(int adType) {
-        this.adType = adType;
-    }
+        public void setAddTime(int addTime) {
+            this.addTime = addTime;
+        }
 
-    public int getAds() {
-        return ads;
-    }
+        public boolean isHasSameDevApp() {
+            return hasSameDevApp;
+        }
 
-    public void setAds(int ads) {
-        this.ads = ads;
-    }
+        public void setHasSameDevApp(boolean hasSameDevApp) {
+            this.hasSameDevApp = hasSameDevApp;
+        }
 
-    public long getApkSize() {
-        return apkSize;
-    }
+        public int getVideoId() {
+            return videoId;
+        }
 
-    public void setApkSize(long apkSize) {
-        this.apkSize = apkSize;
-    }
+        public void setVideoId(int videoId) {
+            this.videoId = videoId;
+        }
 
-    public int getAppendSize() {
-        return appendSize;
-    }
+        public String getSource() {
+            return source;
+        }
 
-    public void setAppendSize(int appendSize) {
-        this.appendSize = appendSize;
-    }
+        public void setSource(String source) {
+            this.source = source;
+        }
 
-    public String getBriefShow() {
-        return briefShow;
-    }
+        public String getVersionName() {
+            return versionName;
+        }
 
-    public void setBriefShow(String briefShow) {
-        this.briefShow = briefShow;
-    }
+        public void setVersionName(String versionName) {
+            this.versionName = versionName;
+        }
 
-    public boolean isBriefUseIntro() {
-        return briefUseIntro;
-    }
+        public HdIconBean getHdIcon() {
+            return hdIcon;
+        }
 
-    public void setBriefUseIntro(boolean briefUseIntro) {
-        this.briefUseIntro = briefUseIntro;
-    }
+        public void setHdIcon(HdIconBean hdIcon) {
+            this.hdIcon = hdIcon;
+        }
 
-    public String getDisplayName() {
-        return displayName;
-    }
+        public double getRatingScore() {
+            return ratingScore;
+        }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
+        public void setRatingScore(double ratingScore) {
+            this.ratingScore = ratingScore;
+        }
 
-    public String getIcon() {
-        return icon;
-    }
+        public String getBriefShow() {
+            return briefShow;
+        }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
+        public void setBriefShow(String briefShow) {
+            this.briefShow = briefShow;
+        }
 
-    public int getId() {
-        return id;
-    }
+        public int getDeveloperId() {
+            return developerId;
+        }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+        public void setDeveloperId(int developerId) {
+            this.developerId = developerId;
+        }
 
-    public int getLevel1CategoryId() {
-        return level1CategoryId;
-    }
+        public int getFitness() {
+            return fitness;
+        }
 
-    public void setLevel1CategoryId(int level1CategoryId) {
-        this.level1CategoryId = level1CategoryId;
-    }
+        public void setFitness(int fitness) {
+            this.fitness = fitness;
+        }
 
-    public String getLevel1CategoryName() {
-        return level1CategoryName;
-    }
+        public int getId() {
+            return id;
+        }
 
-    public void setLevel1CategoryName(String level1CategoryName) {
-        this.level1CategoryName = level1CategoryName;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
 
-    public int getLevel2CategoryId() {
-        return level2CategoryId;
-    }
+        public int getLevel1CategoryId() {
+            return level1CategoryId;
+        }
 
-    public void setLevel2CategoryId(int level2CategoryId) {
-        this.level2CategoryId = level2CategoryId;
-    }
+        public void setLevel1CategoryId(int level1CategoryId) {
+            this.level1CategoryId = level1CategoryId;
+        }
 
-    public String getPackageName() {
-        return packageName;
-    }
+        public String getReleaseKeyHash() {
+            return releaseKeyHash;
+        }
 
-    public void setPackageName(String packageName) {
-        this.packageName = packageName;
-    }
+        public void setReleaseKeyHash(String releaseKeyHash) {
+            this.releaseKeyHash = releaseKeyHash;
+        }
 
-    public int getPosition() {
-        return position;
-    }
+        public boolean isRelateAppHasMore() {
+            return relateAppHasMore;
+        }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
+        public void setRelateAppHasMore(boolean relateAppHasMore) {
+            this.relateAppHasMore = relateAppHasMore;
+        }
 
-    public String getPublisherName() {
-        return publisherName;
-    }
+        public int getRId() {
+            return rId;
+        }
 
-    public void setPublisherName(String publisherName) {
-        this.publisherName = publisherName;
-    }
+        public void setRId(int rId) {
+            this.rId = rId;
+        }
 
-    public int getRId() {
-        return rId;
-    }
+        public int getSuitableType() {
+            return suitableType;
+        }
 
-    public void setRId(int rId) {
-        this.rId = rId;
-    }
+        public void setSuitableType(int suitableType) {
+            this.suitableType = suitableType;
+        }
 
-    public double getRatingScore() {
-        return ratingScore;
-    }
+        public boolean isBriefUseIntro() {
+            return briefUseIntro;
+        }
 
-    public void setRatingScore(double ratingScore) {
-        this.ratingScore = ratingScore;
-    }
+        public void setBriefUseIntro(boolean briefUseIntro) {
+            this.briefUseIntro = briefUseIntro;
+        }
 
-    public String getReleaseKeyHash() {
-        return releaseKeyHash;
-    }
+        public int getAds() {
+            return ads;
+        }
 
-    public void setReleaseKeyHash(String releaseKeyHash) {
-        this.releaseKeyHash = releaseKeyHash;
-    }
+        public void setAds(int ads) {
+            this.ads = ads;
+        }
 
-    public String getScreenshot() {
-        return screenshot;
-    }
+        public String getPublisherName() {
+            return publisherName;
+        }
 
-    public void setScreenshot(String screenshot) {
-        this.screenshot = screenshot;
-    }
+        public void setPublisherName(String publisherName) {
+            this.publisherName = publisherName;
+        }
 
-    public String getSource() {
-        return source;
-    }
+        public int getLevel2CategoryId() {
+            return level2CategoryId;
+        }
 
-    public void setSource(String source) {
-        this.source = source;
-    }
+        public void setLevel2CategoryId(int level2CategoryId) {
+            this.level2CategoryId = level2CategoryId;
+        }
 
-    public int getSuitableType() {
-        return suitableType;
-    }
+        public int getPosition() {
+            return position;
+        }
 
-    public void setSuitableType(int suitableType) {
-        this.suitableType = suitableType;
-    }
+        public void setPosition(int position) {
+            this.position = position;
+        }
 
-    public long getUpdateTime() {
-        return updateTime;
-    }
+        public boolean isFavorite() {
+            return favorite;
+        }
 
-    public void setUpdateTime(long updateTime) {
-        this.updateTime = updateTime;
-    }
+        public void setFavorite(boolean favorite) {
+            this.favorite = favorite;
+        }
 
-    public int getVersionCode() {
-        return versionCode;
-    }
+        public boolean isIsFavorite() {
+            return isFavorite;
+        }
 
-    public void setVersionCode(int versionCode) {
-        this.versionCode = versionCode;
-    }
+        public void setIsFavorite(boolean isFavorite) {
+            this.isFavorite = isFavorite;
+        }
 
-    public String getVersionName() {
-        return versionName;
-    }
+        public int getAppendSize() {
+            return appendSize;
+        }
 
-    public void setVersionName(String versionName) {
-        this.versionName = versionName;
-    }
+        public void setAppendSize(int appendSize) {
+            this.appendSize = appendSize;
+        }
 
-    public int getVideoId() {
-        return videoId;
-    }
+        public String getLevel1CategoryName() {
+            return level1CategoryName;
+        }
 
-    public void setVideoId(int videoId) {
-        this.videoId = videoId;
-    }
+        public void setLevel1CategoryName(String level1CategoryName) {
+            this.level1CategoryName = level1CategoryName;
+        }
+
+        public boolean isSamDevAppHasMore() {
+            return samDevAppHasMore;
+        }
+
+        public void setSamDevAppHasMore(boolean samDevAppHasMore) {
+            this.samDevAppHasMore = samDevAppHasMore;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
+
+        public void setDisplayName(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public String getIcon() {
+            return icon;
+        }
+
+        public void setIcon(String icon) {
+            this.icon = icon;
+        }
+
+        public String getScreenshot() {
+            return screenshot;
+        }
+
+        public void setScreenshot(String screenshot) {
+            this.screenshot = screenshot;
+        }
+
+        public int getRatingTotalCount() {
+            return ratingTotalCount;
+        }
+
+        public void setRatingTotalCount(int ratingTotalCount) {
+            this.ratingTotalCount = ratingTotalCount;
+        }
+
+        public int getAdType() {
+            return adType;
+        }
+
+        public void setAdType(int adType) {
+            this.adType = adType;
+        }
+
+        public int getApkSize() {
+            return apkSize;
+        }
+
+        public void setApkSize(int apkSize) {
+            this.apkSize = apkSize;
+        }
+
+        public String getPackageName() {
+            return packageName;
+        }
+
+        public void setPackageName(String packageName) {
+            this.packageName = packageName;
+        }
+
+        public long getUpdateTime() {
+            return updateTime;
+        }
+
+        public void setUpdateTime(long updateTime) {
+            this.updateTime = updateTime;
+        }
+
+        public int getGrantCode() {
+            return grantCode;
+        }
+
+        public void setGrantCode(int grantCode) {
+            this.grantCode = grantCode;
+        }
+
+        public int getVersionCode() {
+            return versionCode;
+        }
+
+        public void setVersionCode(int versionCode) {
+            this.versionCode = versionCode;
+        }
+
+        public int getDiffFileSize() {
+            return diffFileSize;
+        }
+
+        public void setDiffFileSize(int diffFileSize) {
+            this.diffFileSize = diffFileSize;
+        }
+
+        public static class HdIconBean {
+            /**
+             * main : AppStore/02d455182b6b0dccb2f490e29d6257f69ac43fab3
+             */
+
+            private String main;
+
+            public String getMain() {
+                return main;
+            }
+
+            public void setMain(String main) {
+                this.main = main;
+            }
+        }
 }
