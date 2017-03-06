@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by Anonym on 2017/2/28.
  */
-
+    
 public class HttpManager {
     public OkHttpClient getOkHttpClient(){
         //log用拦截器
