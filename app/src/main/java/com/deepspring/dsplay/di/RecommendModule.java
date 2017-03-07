@@ -1,7 +1,11 @@
 package com.deepspring.dsplay.di;
 
+import android.app.ProgressDialog;
+
+import com.deepspring.dsplay.data.RecommendModel;
 import com.deepspring.dsplay.presenter.RecommendPresenter;
 import com.deepspring.dsplay.presenter.contract.RecommendContract;
+import com.deepspring.dsplay.ui.fragment.RecommendFragment;
 
 import dagger.Module;
 import dagger.Provides;
@@ -21,9 +25,9 @@ public class RecommendModule {
     }
 
     @Provides
-    public RecommendContract.Presenter providePresenter(RecommendContract.View view) {
+    public RecommendContract.Presenter providePresenter(RecommendContract.View view, RecommendModel recommendModel) {
 
-        return new RecommendPresenter(view);
+        return new RecommendPresenter(view, recommendModel);
     }
 
     @Provides
@@ -31,4 +35,13 @@ public class RecommendModule {
         return mView;
     }
 
+    @Provides
+    public RecommendModel privodeModel() {
+        return new RecommendModel();
+    }
+
+    @Provides
+    public ProgressDialog progressDialog(RecommendContract.View view) {
+        return new ProgressDialog(((RecommendFragment)view).getActivity());
+    }
 }

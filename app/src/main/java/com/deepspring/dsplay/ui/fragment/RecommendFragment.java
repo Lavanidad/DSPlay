@@ -36,10 +36,10 @@ public class RecommendFragment extends Fragment implements RecommendContract.Vie
     @BindView(R.id.recyle_view)
     RecyclerView mRecycleView;
     private RecomendAppAdatper mAdapter;
-    private ProgressDialog mProgressDialog;
-
     @Inject
-    RecommendContract.Presenter mPresenter;
+    public ProgressDialog mProgressDialog;
+    @Inject
+    public RecommendContract.Presenter mPresenter;
 
     @Nullable
     @Override
