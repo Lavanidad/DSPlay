@@ -47,20 +47,12 @@ public class RecommendFragment extends Fragment implements RecommendContract.Vie
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recomend,container,false);
         ButterKnife.bind(this,view);
-        mProgressDialog = new ProgressDialog(getActivity());
-
-
-        initData();
-        return view ;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         //依赖注入
         DaggerRecommendComponent.builder()
                 .recommendModule(new RecommendModule(this)).build().inject(this);
         //DaggerRecommendComponent.create();//create实现上面的封装
+        initData();
+        return view ;
     }
 
     private void initData() {

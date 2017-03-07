@@ -19,6 +19,7 @@ public class RecommendPresenter implements RecommendContract.Presenter {
 
     private RecommendContract.View mView;
 
+    //@Inject
     public  RecommendPresenter(RecommendContract.View view, RecommendModel model) {
 
         this.mView = view;
