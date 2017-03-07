@@ -15,11 +15,14 @@ import android.widget.Toast;
 
 import com.deepspring.dsplay.R;
 import com.deepspring.dsplay.bean.AppInfo;
-import com.deepspring.dsplay.presenter.RecommendPresenter;
+import com.deepspring.dsplay.di.DaggerRecommendComponent;
+import com.deepspring.dsplay.di.RecommendModule;
 import com.deepspring.dsplay.presenter.contract.RecommendContract;
 import com.deepspring.dsplay.ui.adapter.RecomendAppAdatper;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +37,9 @@ public class RecommendFragment extends Fragment implements RecommendContract.Vie
     RecyclerView mRecycleView;
     private RecomendAppAdatper mAdapter;
     private ProgressDialog mProgressDialog;
-    private RecommendContract.Presenter mPresenter;
+
+    @Inject
+    RecommendContract.Presenter mPresenter;
 
     @Nullable
     @Override
@@ -43,9 +48,19 @@ public class RecommendFragment extends Fragment implements RecommendContract.Vie
         View view = inflater.inflate(R.layout.fragment_recomend,container,false);
         ButterKnife.bind(this,view);
         mProgressDialog = new ProgressDialog(getActivity());
-        mPresenter = new RecommendPresenter(this);
+
+
         initData();
         return view ;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        //依赖注入
+        DaggerRecommendComponent.builder()
+                .recommendModule(new RecommendModule(this)).build().inject(this);
+        //DaggerRecommendComponent.create();//create实现上面的封装
     }
 
     private void initData() {
