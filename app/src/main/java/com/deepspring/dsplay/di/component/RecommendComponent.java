@@ -11,7 +11,7 @@ import dagger.Component;
  */
 
 @FragmentScope
-@Component(modules = {RemmendModule.class, AppComponent.class})
+@Component(modules = RemmendModule.class, dependencies = AppComponent.class)
 public interface RecommendComponent {
 
     void inject(RecommendFragment fragment);
