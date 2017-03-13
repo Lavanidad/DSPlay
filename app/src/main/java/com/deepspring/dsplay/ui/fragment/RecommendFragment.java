@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.deepspring.dsplay.R;
 import com.deepspring.dsplay.bean.AppInfo;
-import com.deepspring.dsplay.di.DaggerRecommendComponent;
+import com.deepspring.dsplay.di.component.DaggerRecommendComponent;
 import com.deepspring.dsplay.di.module.RecommendModule;
 import com.deepspring.dsplay.presenter.contract.RecommendContract;
 import com.deepspring.dsplay.ui.adapter.RecomendAppAdatper;
