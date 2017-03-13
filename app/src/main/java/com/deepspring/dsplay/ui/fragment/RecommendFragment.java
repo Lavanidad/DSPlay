@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import com.deepspring.dsplay.R;
 import com.deepspring.dsplay.bean.AppInfo;
-import com.deepspring.dsplay.di.component.DaggerRecommendComponent;
-import com.deepspring.dsplay.di.module.RecommendModule;
+import com.deepspring.dsplay.di.component.DaggerAppComponent;
+import com.deepspring.dsplay.di.module.RemmendModule;
 import com.deepspring.dsplay.presenter.contract.RecommendContract;
 import com.deepspring.dsplay.ui.adapter.RecomendAppAdatper;
 
@@ -48,8 +48,9 @@ public class RecommendFragment extends Fragment implements RecommendContract.Vie
         View view = inflater.inflate(R.layout.fragment_recomend,container,false);
         ButterKnife.bind(this,view);
         //依赖注入
-        DaggerRecommendComponent.builder()
-                .recommendModule(new RecommendModule(this)).build().inject(this);
+        ;
+        DaggerAppComponent.builder().appComponent((getActivity().getApplication()).getAppComponent())
+                .remmendModue(new RemmendModule(this)).build().inject(this);
         //DaggerRecommendComponent.create();//create实现上面的封装
         initData();
         return view ;

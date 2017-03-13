@@ -1,7 +1,13 @@
-package com.deepspring.dsplay.data.http;
+package com.deepspring.dsplay.di.module;
+
+import com.deepspring.dsplay.data.http.ApiService;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -9,11 +15,15 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by Anonym on 2017/2/28.
+ * Created by Anonym on 2017/3/13.
  */
-    
-public class HttpManager {
-    public OkHttpClient getOkHttpClient(){
+
+@Module
+public class HttpModule {
+
+    @Provides
+    @Singleton
+    public OkHttpClient provideOkHttpClient(){
         //log用拦截器
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         //开发模式记录整个body，否则只记录基本信息如返回200，http协议版本等
@@ -28,7 +38,9 @@ public class HttpManager {
                 .build();
     }
 
-    public Retrofit getRetrofit(OkHttpClient okHttpClient){
+    @Provides
+    @Singleton
+    public Retrofit provideRetrofit(OkHttpClient okHttpClient){
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(ApiService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -36,5 +48,11 @@ public class HttpManager {
                 .client(okHttpClient);
 
         return builder.build();
+    }
+
+    @Provides
+    @Singleton
+    public ApiService provideApiServer(Retrofit retrofit) {
+        return retrofit.create(ApiService.class);
     }
 }
