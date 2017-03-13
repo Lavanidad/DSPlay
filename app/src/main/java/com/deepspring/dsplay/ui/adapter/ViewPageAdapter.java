@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.deepspring.dsplay.ui.bean.FragmentInfo;
+import com.deepspring.dsplay.bean.FragmentInfo;
 import com.deepspring.dsplay.ui.fragment.CategoryFragment;
 import com.deepspring.dsplay.ui.fragment.GamesFragment;
 import com.deepspring.dsplay.ui.fragment.RankingFragment;

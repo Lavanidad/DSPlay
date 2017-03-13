@@ -1,4 +1,4 @@
-package com.deepspring.dsplay.ui.bean;
+package com.deepspring.dsplay.bean;
 
 /**
  * Created by Anonym on 2017/2/27.

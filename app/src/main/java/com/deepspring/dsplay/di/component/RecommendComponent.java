@@ -1,5 +1,6 @@
-package com.deepspring.dsplay.di;
+package com.deepspring.dsplay.di.component;
 
+import com.deepspring.dsplay.di.module.RecommendModule;
 import com.deepspring.dsplay.ui.fragment.RecommendFragment;
 
 import dagger.Component;

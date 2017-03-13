@@ -2,8 +2,8 @@ package com.deepspring.dsplay.data;
 
 import com.deepspring.dsplay.bean.AppInfo;
 import com.deepspring.dsplay.bean.PageBean;
-import com.deepspring.dsplay.http.ApiService;
-import com.deepspring.dsplay.http.HttpManager;
+import com.deepspring.dsplay.data.http.ApiService;
+import com.deepspring.dsplay.data.http.HttpManager;
 
 import retrofit2.Callback;
 

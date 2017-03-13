@@ -1,4 +1,4 @@
-package com.deepspring.dsplay.http;
+package com.deepspring.dsplay.data.http;
 
 import com.deepspring.dsplay.bean.AppInfo;
 import com.deepspring.dsplay.bean.PageBean;

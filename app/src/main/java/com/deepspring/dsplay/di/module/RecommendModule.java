@@ -1,4 +1,4 @@
-package com.deepspring.dsplay.di;
+package com.deepspring.dsplay.di.module;
 
 import android.app.ProgressDialog;
 
