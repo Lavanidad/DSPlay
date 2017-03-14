@@ -13,7 +13,7 @@ import dagger.Component;
  */
 
 @Singleton
-@Component(modules = {AppModule.class,HttpModule.class})
+@Component(modules = {AppModule.class, HttpModule.class})
 public interface AppComponent {
 
     public ApiService getApiServer();
