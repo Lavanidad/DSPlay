@@ -49,7 +49,8 @@ public class RecommendFragment extends Fragment implements RecommendContract.Vie
         View view = inflater.inflate(R.layout.fragment_recomend,container,false);
         ButterKnife.bind(this,view);
         //依赖注入
-        DaggerRecommendComponent.builder().appComponent(((AppApplication)getActivity().getApplication()).getAppComponent())
+        DaggerRecommendComponent.builder()
+                .appComponent(((AppApplication)getActivity().getApplication()).getAppComponent())
                 .remmendModule(new RemmendModule(this)).build().inject(this);
         //DaggerRecommendComponent.create();//create实现上面的封装
         initData();
