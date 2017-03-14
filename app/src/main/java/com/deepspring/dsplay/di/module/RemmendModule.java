@@ -42,7 +42,7 @@ public class RemmendModule {
     }
 
     @Provides
-    public ProgressDialog progressDialog(RecommendContract.View view) {
+    public ProgressDialog privodeProgressDialog(RecommendContract.View view) {
         return new ProgressDialog(((RecommendFragment)view).getActivity());
     }
 }

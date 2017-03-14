@@ -13,8 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.deepspring.dsplay.AppApplication;
 import com.deepspring.dsplay.R;
 import com.deepspring.dsplay.bean.AppInfo;
+import com.deepspring.dsplay.di.component.DaggerRecommendComponent;
+import com.deepspring.dsplay.di.module.RemmendModule;
 import com.deepspring.dsplay.presenter.contract.RecommendContract;
 import com.deepspring.dsplay.ui.adapter.RecomendAppAdatper;
 
@@ -46,12 +49,8 @@ public class RecommendFragment extends Fragment implements RecommendContract.Vie
         View view = inflater.inflate(R.layout.fragment_recomend,container,false);
         ButterKnife.bind(this,view);
         //依赖注入
-
-       //TODO ; A BUG
-//        DaggerAppComponent.builder().appComponent((getActivity().getApplication()).getAppComponent())
-//                .remmendModue(new Remmend)
-
-
+        DaggerRecommendComponent.builder().appComponent(((AppApplication)getActivity().getApplication()).getAppComponent())
+                .remmendModule(new RemmendModule(this)).build().inject(this);
         //DaggerRecommendComponent.create();//create实现上面的封装
         initData();
         return view ;
@@ -59,7 +58,7 @@ public class RecommendFragment extends Fragment implements RecommendContract.Vie
 
     private void initData() {
         mPresenter.requestDatas();
-    }//end init
+    }
 
     private void initRecycleView(List<AppInfo> datas) {
         //设置布局管理器
