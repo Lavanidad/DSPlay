@@ -5,6 +5,8 @@ import com.deepspring.dsplay.bean.PageBean;
 import com.deepspring.dsplay.data.RecommendModel;
 import com.deepspring.dsplay.presenter.contract.RecommendContract;
 
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -13,20 +15,14 @@ import retrofit2.Response;
  * Created by Anonym on 2017/3/6.
  */
 
-public class RecommendPresenter implements RecommendContract.Presenter {
+public class RecommendPresenter extends BasePresenter<RecommendModel,RecommendContract.View> {
 
-    private RecommendModel mModel;
-
-    private RecommendContract.View mView;
-
-    //@Inject
-    public  RecommendPresenter(RecommendContract.View view, RecommendModel model) {
-
-        this.mView = view;
-        this.mModel = model;
+    @Inject
+    public RecommendPresenter(RecommendModel model, RecommendContract.View view) {
+        super(model, view);
     }
 
-    @Override
+
     public void requestDatas() {
 
         mView.showLoading();

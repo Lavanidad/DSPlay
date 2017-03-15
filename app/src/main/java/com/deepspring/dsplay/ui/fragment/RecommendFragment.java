@@ -1,23 +1,18 @@
 package com.deepspring.dsplay.ui.fragment;
 
 import android.app.ProgressDialog;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.deepspring.dsplay.AppApplication;
 import com.deepspring.dsplay.R;
 import com.deepspring.dsplay.bean.AppInfo;
+import com.deepspring.dsplay.di.component.AppComponent;
 import com.deepspring.dsplay.di.component.DaggerRecommendComponent;
 import com.deepspring.dsplay.di.module.RemmendModule;
+import com.deepspring.dsplay.presenter.RecommendPresenter;
 import com.deepspring.dsplay.presenter.contract.RecommendContract;
 import com.deepspring.dsplay.ui.adapter.RecomendAppAdatper;
 
@@ -26,38 +21,33 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by Anonym on 2017/2/27.
  */
 
-public class RecommendFragment extends Fragment implements RecommendContract.View{
+public class RecommendFragment extends BaseFragment<RecommendPresenter> implements RecommendContract.View{
 
     @BindView(R.id.recyle_view)
     RecyclerView mRecycleView;
     private RecomendAppAdatper mAdapter;
     @Inject
     public ProgressDialog mProgressDialog;
-    @Inject
-    public RecommendContract.Presenter mPresenter;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recomend,container,false);
-        ButterKnife.bind(this,view);
-        //依赖注入
-        DaggerRecommendComponent.builder()
-                .appComponent(((AppApplication)getActivity().getApplication()).getAppComponent())
-                .remmendModule(new RemmendModule(this)).build().inject(this);
-        //DaggerRecommendComponent.create();//create实现上面的封装
-        initData();
-        return view ;
+    public int setLayout() {
+        return R.layout.fragment_recomend;
     }
 
-    private void initData() {
+    @Override
+    public void setupActivityComponent(AppComponent appComponent) {
+        DaggerRecommendComponent.builder()
+            .appComponent(appComponent)
+            .remmendModule(new RemmendModule(this)).build().inject(this);
+    }
+
+    @Override
+    public void init() {
         mPresenter.requestDatas();
     }
 
