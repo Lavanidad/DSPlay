@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.deepspring.dsplay.R;
+import com.deepspring.dsplay.di.component.AppComponent;
 import com.deepspring.dsplay.ui.adapter.ViewPageAdapter;
 
 import butterknife.BindView;
@@ -36,14 +37,22 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        initDrawerLayout();
-        initTabLayout();
     }
 
     @Override
     public int setLayout() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    public void setupActivityComponent(AppComponent appComponent) {
+
+    }
+
+    @Override
+    public void init() {
+        initDrawerLayout();
+        initTabLayout();
     }
 
     private void initDrawerLayout() {

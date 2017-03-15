@@ -7,7 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.deepspring.dsplay.AppApplication;
 import com.deepspring.dsplay.di.component.AppComponent;
+import com.deepspring.dsplay.presenter.BasePresenter;
 import com.mikepenz.iconics.context.IconicsLayoutInflater;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -16,10 +19,12 @@ import butterknife.Unbinder;
  * Created by Anonym on 2017/3/15.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
 
     private Unbinder mUnbinder;
     private AppApplication mApplication;
+    @Inject
+    T mPresenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         LayoutInflaterCompat.setFactory(getLayoutInflater(),
@@ -29,16 +34,22 @@ public abstract class BaseActivity extends AppCompatActivity {
         mUnbinder = ButterKnife.bind(this);
         this.mApplication = (AppApplication) getApplication();
         setupActivityComponent(mApplication.getAppComponent());
+        init();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(mUnbinder != null) {
+        if(mUnbinder != Unbinder.EMPTY) {
             mUnbinder.unbind();
         }
     }
 
+//    protected void startActivity(Class c) {
+//        this.startActivity(new Intent(this,c));
+//    }
+
     public abstract int setLayout();
     public abstract void setupActivityComponent(AppComponent appComponent);
+    public abstract void init();
 }
