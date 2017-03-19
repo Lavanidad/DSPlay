@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 
 import com.deepspring.dsplay.data.RecommendModel;
 import com.deepspring.dsplay.data.http.ApiService;
-import com.deepspring.dsplay.presenter.RecommendPresenter;
 import com.deepspring.dsplay.presenter.contract.RecommendContract;
 import com.deepspring.dsplay.ui.fragment.RecommendFragment;
 
@@ -25,11 +24,6 @@ public class RemmendModule {
         this.mView = view;
     }
 
-    @Provides
-    public RecommendContract.Presenter providePresenter(RecommendContract.View view, RecommendModel recommendModel) {
-
-        return new RecommendPresenter(view, recommendModel);
-    }
 
     @Provides
     public RecommendContract.View provideView() {

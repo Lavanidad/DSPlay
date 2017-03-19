@@ -6,13 +6,13 @@ import com.deepspring.dsplay.ui.BaseView;
  * Created by Anonym on 2017/3/6.
  */
 
-public interface BasePresenter {
+public class BasePresenter<M,V extends BaseView> {
 
-    interface View extends BaseView {
+    protected M  mModel;
+    protected V mView;
 
-    }
-
-    interface Presenter extends BasePresenter {
-
+    public BasePresenter(M m, V v) {
+        this.mView = v;
+        this.mModel = m;
     }
 }

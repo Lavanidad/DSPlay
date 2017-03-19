@@ -50,7 +50,7 @@ public class RecomendAppAdatper extends RecyclerView.Adapter<RecomendAppAdatper.
 
     @Override
     public int getItemCount() {
-        return mDatas.size();
+        return mDatas == null ? 0 : mDatas.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
