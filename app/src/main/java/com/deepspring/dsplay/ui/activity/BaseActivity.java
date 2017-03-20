@@ -18,38 +18,34 @@ import butterknife.Unbinder;
 /**
  * Created by Anonym on 2017/3/15.
  */
-
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
-
     private Unbinder mUnbinder;
     private AppApplication mApplication;
     @Inject
-    T mPresenter;
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        LayoutInflaterCompat.setFactory(getLayoutInflater(),
-                new IconicsLayoutInflater(getDelegate()));
-        super.onCreate(savedInstanceState);
-        setContentView(setLayout());
-        mUnbinder = ButterKnife.bind(this);
-        this.mApplication = (AppApplication) getApplication();
-        setupActivityComponent(mApplication.getAppComponent());
-        init();
-    }
-
+    T  mPresenter;
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(mUnbinder != Unbinder.EMPTY) {
+        if (mUnbinder!=Unbinder.EMPTY){
             mUnbinder.unbind();
         }
     }
 
-//    protected void startActivity(Class c) {
-//        this.startActivity(new Intent(this,c));
+//    protected void startActivity(Class c){
+//        this.startActivity(c);
 //    }
 
-    public abstract int setLayout();
-    public abstract void setupActivityComponent(AppComponent appComponent);
-    public abstract void init();
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        LayoutInflaterCompat.setFactory(getLayoutInflater(),new IconicsLayoutInflater(getDelegate()));
+        super.onCreate(savedInstanceState);
+        setContentView(setLayout());
+        mUnbinder=ButterKnife.bind(this);
+        this.mApplication= (AppApplication) getApplication();
+        setUpActivityComponent(mApplication.getAppComponent());
+        init();
+    }
+    abstract int setLayout();
+    public abstract void setUpActivityComponent(AppComponent appComponent);
+    public  abstract void init();
 }

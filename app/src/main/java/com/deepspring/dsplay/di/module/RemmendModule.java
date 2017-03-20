@@ -32,7 +32,7 @@ public class RemmendModule {
 
     @Provides
     public RecommendModel privodeModel(ApiService apiService) {
-        return new RecommendModel(apiService    );
+        return new RecommendModel(apiService);
     }
 
     @Provides

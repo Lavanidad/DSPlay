@@ -59,4 +59,7 @@ dependencies {
     compile 'com.google.dagger:dagger:2.0.2'//dagger公用aoi
     provided 'org.glassfish:javax.annotation:10.0-b28'//添加android缺失部分的javax注解
 
+    //pathview
+    compile 'com.eftimoff:android-pathview:1.0.8@aar'
+
 }

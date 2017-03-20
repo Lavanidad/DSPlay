@@ -17,26 +17,31 @@ import java.util.List;
  * Created by Anonym on 2017/2/27.
  */
 
-public class ViewPageAdapter extends FragmentStatePagerAdapter{
+public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+    private List<FragmentInfo> mFragment=new ArrayList<>(4);
 
-    private List<FragmentInfo> mFragments = new ArrayList<>(4);
-
-    public ViewPageAdapter(FragmentManager fm) {
+    public ViewPagerAdapter(FragmentManager fm) {
         super(fm);
         initFragment();
     }
+    private void initFragment()
+    {
 
-    private void initFragment(){
-        mFragments.add(new FragmentInfo( "推荐", RecommendFragment.class));
-        mFragments.add(new FragmentInfo("排行", RankingFragment.class));
-        mFragments.add(new FragmentInfo("游戏", GamesFragment.class));
-        mFragments.add(new FragmentInfo("分类", CategoryFragment.class));
+        mFragment.add(new FragmentInfo("推荐",RecommendFragment.class));
+        mFragment.add(new FragmentInfo("排行",RankingFragment.class));
+        mFragment.add(new FragmentInfo("游戏",GamesFragment.class));
+        mFragment.add(new FragmentInfo("分类",CategoryFragment.class));
+    }
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mFragment.get(position).getTitle();
     }
 
     @Override
     public Fragment getItem(int position) {
+
         try {
-            return (Fragment)mFragments.get(position).getFragment().newInstance();
+            return (Fragment) mFragment.get(position).getFragment().newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -47,11 +52,6 @@ public class ViewPageAdapter extends FragmentStatePagerAdapter{
 
     @Override
     public int getCount() {
-        return mFragments.size();
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mFragments.get(position).getTitle();
+        return mFragment.size();
     }
 }

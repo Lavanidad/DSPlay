@@ -1,8 +1,8 @@
 package com.deepspring.dsplay.ui.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,37 +21,39 @@ import butterknife.Unbinder;
  */
 
 public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
-
     private Unbinder mUnbinder;
     private AppApplication mApplication;
-    private View mRootView;
     @Inject
-    T mPresenter;
+    T  mPresenter;
+
+    private View mRootView;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(setLayout(), container, false);
-        mUnbinder = ButterKnife.bind(this,mRootView);
-        init();
+        mUnbinder=ButterKnife.bind(this, mRootView);
+
         return mRootView;
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        this.mApplication = (AppApplication) getActivity().getApplication();
-        setupActivityComponent(mApplication.getAppComponent());
+        this.mApplication= (AppApplication) getActivity().getApplication();
+        setUpActivityComponent(mApplication.getAppComponent());
+        init();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(mUnbinder != Unbinder.EMPTY) {
+        if (mUnbinder!=Unbinder.EMPTY){
             mUnbinder.unbind();
         }
     }
 
-    public abstract int setLayout();
-    public abstract void setupActivityComponent(AppComponent appComponent);
-    public abstract void init();
+    abstract int setLayout();
+    public abstract void setUpActivityComponent(AppComponent appComponent);
+    public  abstract void init();
 }

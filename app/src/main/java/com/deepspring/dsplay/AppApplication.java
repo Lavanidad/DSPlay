@@ -25,10 +25,17 @@ public class AppApplication extends Application {
         return mAppComponent;
     }
 
+
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+
         mAppComponent= DaggerAppComponent.builder().appModule(new AppModule(this))
                 .httpModule(new HttpModule()).build();
     }
+
+
+
 }
