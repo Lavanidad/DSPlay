@@ -21,7 +21,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         app:pathColor="@android:color/holo_red_light"
-        app:svg="@raw/travelheadlines"
+        app:svg="@raw/wind"
         app:pathWidth="3dp"/>
 
 </LinearLayout>
