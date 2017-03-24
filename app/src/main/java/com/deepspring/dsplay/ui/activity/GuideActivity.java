@@ -82,7 +82,7 @@ public class GuideActivity extends AppCompatActivity implements ViewPager.OnPage
     public void onPageScrollStateChanged(int state) {
 
     }
-
+    //TODO: need on click
 //    @OnClick(R.id.btn_enter)
 //    public void onClick() {
 //        ACache.get(this).put(Constant.IS_SHOW_GUIDE,"0");
