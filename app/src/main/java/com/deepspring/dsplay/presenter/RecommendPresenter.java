@@ -7,9 +7,9 @@ import com.deepspring.dsplay.presenter.contract.RecommendContract;
 
 import javax.inject.Inject;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Anonym on 2017/3/6.
@@ -22,26 +22,36 @@ public class RecommendPresenter extends BasePresenter<RecommendModel,RecommendCo
         super(model, view);
     }
 
-
     public void requestDatas() {
 
-        mView.showLoading();
-        mModel.getApps(new Callback<PageBean<AppInfo>>() {
-            @Override
-            public void onResponse(Call<PageBean<AppInfo>> call, Response<PageBean<AppInfo>> response) {
+        mModel.getApps()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<PageBean<AppInfo>>() {
+                    @Override
+                    public void onStart() {
+                        mView.showLoading();
+                    }
 
-                if(response != null){
-                    mView.showResult(response.body().getDatas());
-                }else {
-                    mView.showNodata();
-                }
-                mView.dimissLoading();
-            }
-            @Override
-            public void onFailure(Call<PageBean<AppInfo>> call, Throwable t) {
-                mView.dimissLoading();
-                mView.showError(t.getMessage());
-            }
-        });
+                    @Override
+                    public void onCompleted() {
+                        mView.dimissLoading();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mView.dimissLoading();
+                        //handler error
+                    }
+
+                    @Override
+                    public void onNext(PageBean<AppInfo> response) {
+                        if(response != null){
+                            mView.showResult(response.getDatas());
+                        }else {
+                            mView.showNodata();
+                        }
+                    }
+                });
     }
 }

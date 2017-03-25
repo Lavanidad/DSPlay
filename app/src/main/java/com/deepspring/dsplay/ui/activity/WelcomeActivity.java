@@ -33,7 +33,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         pathView.getPathAnimator()
                 .delay(100)
-                .duration(5000)
+                .duration(500)
                 .interpolator(new AccelerateDecelerateInterpolator())
                 .listenerEnd(new PathView.AnimatorBuilder.ListenerEnd() {
                     @Override
@@ -53,7 +53,6 @@ public class WelcomeActivity extends AppCompatActivity {
         else {
             startActivity(new Intent(this, MainActivity.class));
         }
-
         this.finish();
     }
 }

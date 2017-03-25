@@ -41,6 +41,9 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.5.1'
     //annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
+    //RxJava
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
 
     //retrofit
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
