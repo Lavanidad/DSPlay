@@ -159,7 +159,7 @@ public class CircleIndicator extends LinearLayout {
         Animator animatorIn;
         if (mAnimatorReverseResId == 0) {
             animatorIn = AnimatorInflater.loadAnimator(context, mAnimatorResId);
-            //TODO test
+            //Q1:ReverseInterpolator
             animatorIn.setInterpolator((TimeInterpolator) new ReverseInterpolator());
         } else {
             animatorIn = AnimatorInflater.loadAnimator(context, mAnimatorReverseResId);
@@ -292,7 +292,7 @@ public class CircleIndicator extends LinearLayout {
         animator.start();
     }
 
-    //TODO; test2
+    //Interpolator
     private class ReverseInterpolator implements Interpolator {
         @Override public float getInterpolation(float value) {
             return Math.abs(1.0f - value);
