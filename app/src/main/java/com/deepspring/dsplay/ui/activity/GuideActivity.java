@@ -1,5 +1,6 @@
 package com.deepspring.dsplay.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.deepspring.dsplay.R;
+import com.deepspring.dsplay.common.Constant;
+import com.deepspring.dsplay.common.util.ACache;
 import com.deepspring.dsplay.common.util.ZoomOutPageTransformer;
 import com.deepspring.dsplay.ui.adapter.GuideFragmentAdapter;
 import com.deepspring.dsplay.ui.fragment.GuideFragment;
@@ -20,6 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Anonym on 2017/3/24.
@@ -84,11 +88,11 @@ public class GuideActivity extends AppCompatActivity implements ViewPager.OnPage
     public void onPageScrollStateChanged(int state) {
 
     }
-    //TODO: need on click
-//    @OnClick(R.id.btn_enter)
-//    public void onClick() {
-//        ACache.get(this).put(Constant.IS_SHOW_GUIDE,"0");
-//        startActivity(new Intent(this,MainActivity.class));
-//        this.finish();
-//    }
+
+    @OnClick(R.id.btn_enter)
+    public void onClick() {
+        ACache.get(this).put(Constant.IS_SHOW_GUIDE,"0");
+        startActivity(new Intent(this,MainActivity.class));
+        this.finish();
+    }
 }

@@ -8,6 +8,8 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.LinearLayout;
 
 import com.deepspring.dsplay.R;
+import com.deepspring.dsplay.common.Constant;
+import com.deepspring.dsplay.common.util.ACache;
 import com.eftimoff.androipathview.PathView;
 
 import butterknife.BindView;
@@ -43,7 +45,14 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void jump() {
-        startActivity(new Intent(this,MainActivity.class));
+        String isShowGuide = ACache.get(this).getAsString(Constant.IS_SHOW_GUIDE);
+        // 第一次启动
+        if(null == isShowGuide) {
+            startActivity(new Intent(this, GuideActivity.class));
+        }
+        else {
+            startActivity(new Intent(this, MainActivity.class));
+        }
         this.finish();
     }
 }
