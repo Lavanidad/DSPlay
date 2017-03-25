@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.deepspring.dsplay.R;
+import com.deepspring.dsplay.common.util.ZoomOutPageTransformer;
 import com.deepspring.dsplay.ui.adapter.GuideFragmentAdapter;
 import com.deepspring.dsplay.ui.fragment.GuideFragment;
 import com.deepspring.dsplay.ui.widget.CircleIndicator;
@@ -63,7 +64,8 @@ public class GuideActivity extends AppCompatActivity implements ViewPager.OnPage
         mViewpager.setOffscreenPageLimit(mAdapter.getCount());
         mViewpager.setAdapter(mAdapter);
         mViewpager.addOnPageChangeListener(this);
-        //mViewpager.setPageTransformer();
+        //mViewpager.setPageTransformer(true, new DepthPageTransformer());
+        mViewpager.setPageTransformer(true, new ZoomOutPageTransformer());
         mIndicator.setViewPager(mViewpager);
         //mIndicator.configureIndicator();
     }
