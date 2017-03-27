@@ -1,5 +1,8 @@
 package com.deepspring.dsplay.di.module;
 
+import android.app.Application;
+
+import com.deepspring.dsplay.common.rx.RxErrorHandler;
 import com.deepspring.dsplay.data.http.ApiService;
 
 import java.util.concurrent.TimeUnit;
@@ -55,4 +58,11 @@ public class HttpModule {
     public ApiService provideApiServer(Retrofit retrofit) {
         return retrofit.create(ApiService.class);
     }
+
+    @Provides
+    @Singleton
+    public RxErrorHandler provideErrorHandler(Application application) {
+        return new RxErrorHandler(application);
+    }
+
 }

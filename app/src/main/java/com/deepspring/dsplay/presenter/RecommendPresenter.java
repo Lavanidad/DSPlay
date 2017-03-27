@@ -5,9 +5,13 @@ import android.util.Log;
 import com.deepspring.dsplay.bean.AppInfo;
 import com.deepspring.dsplay.bean.PageBean;
 import com.deepspring.dsplay.bean.BaseBean;
+import com.deepspring.dsplay.common.rx.RxErrorHandler;
 import com.deepspring.dsplay.common.rx.RxHttpReponseCompat;
+import com.deepspring.dsplay.common.rx.subscriber.ErrorHandlerSubscriber;
 import com.deepspring.dsplay.data.RecommendModel;
 import com.deepspring.dsplay.presenter.contract.RecommendContract;
+
+import org.xml.sax.ErrorHandler;
 
 import javax.inject.Inject;
 
@@ -19,9 +23,12 @@ import rx.Subscriber;
 
 public class RecommendPresenter extends BasePresenter<RecommendModel,RecommendContract.View> {
 
+    private RxErrorHandler mErrorHandler;
+
     @Inject
-    public RecommendPresenter(RecommendModel model, RecommendContract.View view) {
+    public RecommendPresenter(RecommendModel model, RecommendContract.View view, RxErrorHandler errorHandler) {
         super(model, view);
+        this.mErrorHandler = errorHandler;
     }
 
     public void requestDatas() {
@@ -29,12 +36,7 @@ public class RecommendPresenter extends BasePresenter<RecommendModel,RecommendCo
         mModel.getApps()
                 .compose(RxHttpReponseCompat.<PageBean<AppInfo>>compatResult())
                 //.compose(RxHttpReponseCompat.<PageBean<AppInfo>>compatResult())
-                .subscribe(new Subscriber<PageBean<AppInfo>>() {
-                    @Override
-                    public void onStart() {
-                        mView.showLoading();
-                    }
-
+                .subscribe(new ErrorHandlerSubscriber<PageBean<AppInfo>>(mErrorHandler) {
                     @Override
                     public void onCompleted() {
 
@@ -42,17 +44,13 @@ public class RecommendPresenter extends BasePresenter<RecommendModel,RecommendCo
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d("RecPresent", "error");
+
                     }
 
                     @Override
                     public void onNext(PageBean<AppInfo> appInfoPageBean) {
-                        if (appInfoPageBean != null) {
-                            mView.showResult(appInfoPageBean.getDatas());
-                        } else {
-                            mView.showNodata();
-                        }
+
                     }
-                })
+                });
     }
 }
