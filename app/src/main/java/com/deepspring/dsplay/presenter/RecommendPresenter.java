@@ -1,21 +1,14 @@
 package com.deepspring.dsplay.presenter;
 
-import android.util.Log;
-
 import com.deepspring.dsplay.bean.AppInfo;
 import com.deepspring.dsplay.bean.PageBean;
-import com.deepspring.dsplay.bean.BaseBean;
 import com.deepspring.dsplay.common.rx.RxErrorHandler;
 import com.deepspring.dsplay.common.rx.RxHttpReponseCompat;
 import com.deepspring.dsplay.common.rx.subscriber.ErrorHandlerSubscriber;
 import com.deepspring.dsplay.data.RecommendModel;
 import com.deepspring.dsplay.presenter.contract.RecommendContract;
 
-import org.xml.sax.ErrorHandler;
-
 import javax.inject.Inject;
-
-import rx.Subscriber;
 
 /**
  * Created by Anonym on 2017/3/6.
@@ -38,18 +31,23 @@ public class RecommendPresenter extends BasePresenter<RecommendModel,RecommendCo
                 //.compose(RxHttpReponseCompat.<PageBean<AppInfo>>compatResult())
                 .subscribe(new ErrorHandlerSubscriber<PageBean<AppInfo>>(mErrorHandler) {
                     @Override
-                    public void onCompleted() {
-
+                    public void onStart() {
+                        mView.showLoading();
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-
+                    public void onCompleted() {
+                        mView.dimissLoading();
                     }
 
                     @Override
                     public void onNext(PageBean<AppInfo> appInfoPageBean) {
-
+                        if(appInfoPageBean != null) {
+                            mView.showResult(appInfoPageBean.getDatas());
+                        }
+                        else {
+                            mView.showNodata();
+                        }
                     }
                 });
     }

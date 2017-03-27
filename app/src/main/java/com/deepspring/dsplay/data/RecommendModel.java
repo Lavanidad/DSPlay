@@ -2,6 +2,7 @@ package com.deepspring.dsplay.data;
 
 
 import com.deepspring.dsplay.bean.AppInfo;
+import com.deepspring.dsplay.bean.BaseBean;
 import com.deepspring.dsplay.bean.PageBean;
 import com.deepspring.dsplay.data.http.ApiService;
 
@@ -20,7 +21,7 @@ public class RecommendModel {
         this.mApiServer = apiService;
     }
 
-    public Observable<PageBean<AppInfo>> getApps() {
+    public Observable<BaseBean<PageBean<AppInfo>>> getApps() {
         return mApiServer.getApps("{'page':0}");
 //      mApiServer.getApps("{'page':0}").enqueue(callback);
     }
