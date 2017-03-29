@@ -13,7 +13,7 @@ import javax.inject.Inject;
 /**
  * Created by Anonym on 2017/3/6.
  */
-
+//todo bug
 public class RecommendPresenter extends BasePresenter<RecommendModel,RecommendContract.View> {
 
     private RxErrorHandler mErrorHandler;
