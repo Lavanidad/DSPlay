@@ -14,7 +14,7 @@ import rx.schedulers.Schedulers;
  */
 
 public class RxHttpReponseCompat {
-
+//todo test
     public static <T> Observable.Transformer<BaseBean<T>, T> compatResult() {
         return new Observable.Transformer<BaseBean<T>, T>() {
             @Override
