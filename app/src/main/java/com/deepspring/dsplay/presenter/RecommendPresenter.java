@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.deepspring.dsplay.bean.AppInfo;
 import com.deepspring.dsplay.bean.PageBean;
-import com.deepspring.dsplay.bean.BaseBean;
 import com.deepspring.dsplay.common.rx.RxHttpReponseCompat;
 import com.deepspring.dsplay.data.RecommendModel;
 import com.deepspring.dsplay.presenter.contract.RecommendContract;
@@ -53,6 +52,6 @@ public class RecommendPresenter extends BasePresenter<RecommendModel,RecommendCo
                             mView.showNodata();
                         }
                     }
-                })
+                });
     }
 }

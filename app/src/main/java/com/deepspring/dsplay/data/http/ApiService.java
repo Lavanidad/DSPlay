@@ -2,6 +2,7 @@ package com.deepspring.dsplay.data.http;
 
 
 import com.deepspring.dsplay.bean.AppInfo;
+import com.deepspring.dsplay.bean.BaseBean;
 import com.deepspring.dsplay.bean.PageBean;
 
 import retrofit2.http.GET;
@@ -20,6 +21,6 @@ public interface ApiService {
 //    public Call<PageBean<AppInfo>> getApps(@Query("p") String jsonParam);
 
     @GET("featured")
-    public Observable<PageBean<AppInfo>> getApps(@Query("p") String jsonParam);
+    public Observable<BaseBean<PageBean<AppInfo>>> getApps(@Query("p") String jsonParam);
 
 }
