@@ -16,7 +16,10 @@ import dagger.Component;
 @Singleton
 @Component(modules = {AppModule.class, HttpModule.class})
 public interface AppComponent {
+
+    public ApiService getApiService();
+
     public ApiService getApplication();
-    public ApiService getApiServer();
+
     public RxErrorHandler getRxErrorHandler();
 }

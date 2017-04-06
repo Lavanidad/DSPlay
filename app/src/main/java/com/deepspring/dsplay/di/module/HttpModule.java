@@ -61,8 +61,11 @@ public class HttpModule {
 
     @Provides
     @Singleton
-    public RxErrorHandler provideErrorHandler(Application application) {
-        return new RxErrorHandler(application);
+    public RxErrorHandler provideErrorHandlder(Application application){
+
+        return  new RxErrorHandler(application);
     }
+
+
 
 }
