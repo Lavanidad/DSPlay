@@ -1,5 +1,6 @@
 package com.deepspring.dsplay.common.rx.subscriber;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.deepspring.dsplay.common.exception.BaseException;
@@ -11,12 +12,14 @@ import com.deepspring.dsplay.common.rx.RxErrorHandler;
 
 public abstract  class ErrorHandlerSubscriber<T> extends DefaultSubscriber<T> {
 
-    protected RxErrorHandler mRxErrorHandler;
+    protected RxErrorHandler mRxErrorHandler = null;
+
+    protected Context mContext;
 
 
-    public ErrorHandlerSubscriber(RxErrorHandler errorHandler){
-        //mErrorHandler = new RxErrorHandler(mContext);
-        this.mRxErrorHandler = errorHandler;
+    public ErrorHandlerSubscriber(Context context){
+        this.mContext = context;
+        mRxErrorHandler = new RxErrorHandler(mContext);
     }
 
     @Override

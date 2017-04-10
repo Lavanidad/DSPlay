@@ -15,14 +15,14 @@ import rx.Observable;
 
 public class RecommendModel {
 
-    private ApiService mApiServer;
+    private ApiService mApiService;
 
     public RecommendModel(ApiService apiService) {
-        this.mApiServer = apiService;
+        this.mApiService = apiService;
     }
 
     public Observable<BaseBean<PageBean<AppInfo>>> getApps() {
-        return mApiServer.getApps("{'page':0}");
+        return mApiService.getApps("{'page':0}");
 //      mApiServer.getApps("{'page':0}").enqueue(callback);
     }
 }

@@ -1,14 +1,20 @@
 package com.deepspring.dsplay.presenter;
 
+import android.Manifest;
+import android.app.Activity;
+
 import com.deepspring.dsplay.bean.AppInfo;
 import com.deepspring.dsplay.bean.PageBean;
-import com.deepspring.dsplay.common.rx.RxErrorHandler;
 import com.deepspring.dsplay.common.rx.RxHttpReponseCompat;
-import com.deepspring.dsplay.common.rx.subscriber.ErrorHandlerSubscriber;
+import com.deepspring.dsplay.common.rx.subscriber.ProgressDialogSubcriber;
 import com.deepspring.dsplay.data.RecommendModel;
 import com.deepspring.dsplay.presenter.contract.RecommendContract;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import javax.inject.Inject;
+
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * Created by Anonym on 2017/3/6.
@@ -16,37 +22,35 @@ import javax.inject.Inject;
 
 public class RecommendPresenter extends BasePresenter<RecommendModel,RecommendContract.View> {
 
-    private RxErrorHandler mErrorHandler;
-
     @Inject
-    public RecommendPresenter(RecommendModel model, RecommendContract.View view, RxErrorHandler errorHandler) {
+    public RecommendPresenter(RecommendModel model, RecommendContract.View view) {
         super(model, view);
-        this.mErrorHandler = errorHandler;
+
     }
 
     public void requestDatas() {
 
-        mModel.getApps()
-                .compose(RxHttpReponseCompat.<PageBean<AppInfo>>compatResult())
-                //.compose(RxHttpReponseCompat.<PageBean<AppInfo>>compatResult())
-                .subscribe(new ErrorHandlerSubscriber<PageBean<AppInfo>>(mErrorHandler) {
-                    @Override
-                    public void onStart() {
-                        mView.showLoading();
-                    }
+        RxPermissions rxPermissions = new RxPermissions((Activity) mContext);
 
+        rxPermissions.request(Manifest.permission.READ_PHONE_STATE)
+                .flatMap(new Func1<Boolean, Observable<PageBean<AppInfo>>>() {
                     @Override
-                    public void onCompleted() {
-                        mView.dimissLoading();
-                    }
+                    public Observable<PageBean<AppInfo>> call(Boolean aBoolean) {
 
+                        if (aBoolean) {
+
+                            return mModel.getApps().compose(RxHttpReponseCompat.<PageBean<AppInfo>>compatResult());
+                        } else {
+
+                            return Observable.empty();
+                        }
+
+                    }
+                })
+                .subscribe(new ProgressDialogSubcriber<PageBean<AppInfo>>(mContext) {
                     @Override
                     public void onNext(PageBean<AppInfo> appInfoPageBean) {
-                        if(appInfoPageBean != null){
-                            mView.showResult(appInfoPageBean.getDatas());
-                        }else {
-                            mView.showNodata();
-                        }
+                        mView.showResult(appInfoPageBean.getDatas());
                     }
                 });
     }

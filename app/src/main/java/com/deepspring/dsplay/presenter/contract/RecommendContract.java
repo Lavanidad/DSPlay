@@ -18,5 +18,8 @@ public interface RecommendContract {
         void showNodata();
 
         void showError(String msg);
+
+        void onRequestPermissonSuccess();
+        void onRequestPermissonError();
     }
 }

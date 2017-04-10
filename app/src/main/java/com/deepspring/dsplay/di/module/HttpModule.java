@@ -55,7 +55,7 @@ public class HttpModule {
 
     @Provides
     @Singleton
-    public ApiService provideApiServer(Retrofit retrofit) {
+    public ApiService provideApiService(Retrofit retrofit) {
         return retrofit.create(ApiService.class);
     }
 

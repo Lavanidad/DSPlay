@@ -14,9 +14,10 @@ import rx.schedulers.Schedulers;
  */
 
 public class RxHttpReponseCompat {
-//todo test
-    public static <T> Observable.Transformer<BaseBean<T>, T> compatResult() {
-        return new Observable.Transformer<BaseBean<T>, T>() {
+
+    public static  <T> Observable.Transformer<BaseBean<T>,T> compatResult(){
+
+        return  new Observable.Transformer<BaseBean<T>, T>() {
             @Override
             public Observable<T> call(Observable<BaseBean<T>> baseBeanObservable) {
 
@@ -24,24 +25,26 @@ public class RxHttpReponseCompat {
                     @Override
                     public Observable<T> call(final BaseBean<T> tBaseBean) {
 
-                        if (tBaseBean.success()) {
+                        if(tBaseBean.success()){
+
                             return Observable.create(new Observable.OnSubscribe<T>() {
                                 @Override
                                 public void call(Subscriber<? super T> subscriber) {
-                                    try{
+                                    try {
                                         subscriber.onNext(tBaseBean.getData());
                                         subscriber.onCompleted();
-                                    } catch (Exception e) {
+                                    }
+                                    catch (Exception e){
                                         subscriber.onError(e);
                                     }
                                 }
                             });
                         }
                         else {
-                            return Observable.error(new ApiException(tBaseBean.getStatus(), tBaseBean.getMessage()));
+                            return  Observable.error(new ApiException(tBaseBean.getStatus(),tBaseBean.getMessage()));
                         }
                     }
-                }).observeOn(Schedulers.io()).subscribeOn(AndroidSchedulers.mainThread());
+                }).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io());
             }
         };
     }
