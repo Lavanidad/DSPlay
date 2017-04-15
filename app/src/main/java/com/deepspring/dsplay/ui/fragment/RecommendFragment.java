@@ -27,51 +27,81 @@ import butterknife.BindView;
  */
 
 public class RecommendFragment extends BaseFragment<RecommendPresenter> implements RecommendContract.View{
+
     @BindView(R.id.recycle_view)
-    RecyclerView recycleView;
+    RecyclerView mRecyclerView;
+
     private RecommendAppAdatper mAdatper;
+
+
+
+
     @Inject
     ProgressDialog mProgressDialog;
 
+
+
     @Override
-    int setLayout() {
+    public int setLayout() {
         return R.layout.fragment_recomend;
     }
 
     @Override
     public void setUpActivityComponent(AppComponent appComponent) {
-        DaggerRecommendComponent.builder().appComponent(appComponent).
-                remmendModule(new RemmendModule(this)).
-                build().
-                inject(this);
+        DaggerRecommendComponent.builder().appComponent(appComponent)
+                .remmendModule(new RemmendModule(this)).build().inject(this);
     }
+
 
     @Override
     public void init() {
         mPresenter.requestDatas();
+
     }
 
+
+
+
     private void initRecycleView(List<AppInfo> datas){
-        recycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recycleView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.HORIZONTAL_LIST));
-        recycleView.setItemAnimator(new DefaultItemAnimator());
-        mAdatper=new RecommendAppAdatper(getActivity(),datas);
-        recycleView.setAdapter(mAdatper);
+
+
+        //为RecyclerView设置布局管理器
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+
+        //为RecyclerView设置分割线(这个可以对DividerItemDecoration进行修改，自定义)
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL_LIST));
+
+        //动画
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+
+        mAdatper = new RecommendAppAdatper(getActivity(),datas);
+
+        mRecyclerView.setAdapter(mAdatper);
+
+
+
     }
+
 
     @Override
     public void showResult(List<AppInfo> datas) {
-        initRecycleView(datas);
+
+        Toast.makeText(getActivity(),"小豆子好",Toast.LENGTH_LONG).show();
+        initRecycleView( datas);
     }
 
     @Override
     public void showNodata() {
-        Toast.makeText(getActivity(), "暂时无数据,请吃完饭再来", Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(getActivity(),"暂时无数据，请吃完饭再来",Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void showError(String msg) {
-        Toast.makeText(getActivity(), "服务器开小差了："+msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),"服务器开小差了："+msg,Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -85,13 +115,16 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter> implemen
 
         Toast.makeText(getActivity(),"你已拒绝授权",Toast.LENGTH_LONG).show();
     }
+
     @Override
     public void showLoading() {
+
         mProgressDialog.show();
     }
 
     @Override
     public void dimissLoading() {
+
         if(mProgressDialog.isShowing()){
             mProgressDialog.dismiss();
         }

@@ -27,30 +27,14 @@ public class RecommendAppAdatper extends RecyclerView.Adapter<RecommendAppAdatpe
     private Context mContext;
     private List<AppInfo> mDatas;
 
+
     private LayoutInflater mLayoutInflater;
 
     public RecommendAppAdatper(Context context, List<AppInfo> datas) {
+
         this.mDatas = datas;
-        this.mContext=context;
-        mLayoutInflater=LayoutInflater.from(context);
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.img_icon)
-        ImageView imgIcon;
-        @BindView(R.id.text_title)
-        TextView textTitle;
-        @BindView(R.id.text_size)
-        TextView textSize;
-        @BindView(R.id.btn_dl)
-        Button btnDl;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this,itemView);
-
-        }
+        this.mContext = context;
+        mLayoutInflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -60,16 +44,43 @@ public class RecommendAppAdatper extends RecyclerView.Adapter<RecommendAppAdatpe
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        AppInfo appInfo=mDatas.get(position);
-        String baseImgUrl="http://file.market.xiaomi.com/mfc/thumbnail/png/w150q80/";
-        Picasso.with(mContext).load(baseImgUrl+appInfo.getIcon()).into(holder.imgIcon);
 
-        holder.textTitle.setText(appInfo.getDisplayName());
-        holder.textSize.setText((appInfo.getApkSize()/1024/1024)+"MB");
+
+
+        AppInfo appInfo = mDatas.get(position);
+
+//        holder.mImgIcon
+
+        String baseImgUrl ="http://file.market.xiaomi.com/mfc/thumbnail/png/w150q80/";
+        Picasso.with(mContext).load(baseImgUrl +appInfo.getIcon()).into(holder.mImgIcon);
+
+        holder.mTextTitle.setText(appInfo.getDisplayName());
+        holder.mTextSize.setText((appInfo.getApkSize() / 1024 /1024) +" MB");
+
     }
 
     @Override
     public int getItemCount() {
-        return mDatas.size();
+
+
+        return mDatas==null?0:mDatas.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+
+        @BindView(R.id.img_icon)
+        ImageView mImgIcon;
+        @BindView(R.id.text_title)
+        TextView mTextTitle;
+        @BindView(R.id.text_size)
+        TextView mTextSize;
+        @BindView(R.id.btn_dl)
+        Button mBtnDl;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
     }
 }
