@@ -19,6 +19,7 @@ public class BasePresenter<M,V extends BaseView> {
     public BasePresenter(M m, V v) {
         this.mView = v;
         this.mModel = m;
+        initContext();
     }
     private void initContext(){
 
