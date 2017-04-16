@@ -33,12 +33,8 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter> implemen
 
     private RecommendAppAdatper mAdatper;
 
-
-
-
     @Inject
     ProgressDialog mProgressDialog;
-
 
 
     @Override
@@ -52,14 +48,11 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter> implemen
                 .remmendModule(new RemmendModule(this)).build().inject(this);
     }
 
-
     @Override
     public void init() {
         mPresenter.requestDatas();
 
     }
-
-
 
 
     private void initRecycleView(List<AppInfo> datas){

@@ -13,6 +13,7 @@ import rx.schedulers.Schedulers;
  * Created by Anonym on 2017/3/25.
  */
 
+
 public class RxHttpReponseCompat {
 
     public static  <T> Observable.Transformer<BaseBean<T>,T> compatResult(){
@@ -24,9 +25,7 @@ public class RxHttpReponseCompat {
                 return baseBeanObservable.flatMap(new Func1<BaseBean<T>, Observable<T>>() {
                     @Override
                     public Observable<T> call(final BaseBean<T> tBaseBean) {
-
                         if(tBaseBean.success()){
-
                             return Observable.create(new Observable.OnSubscribe<T>() {
                                 @Override
                                 public void call(Subscriber<? super T> subscriber) {
@@ -47,5 +46,6 @@ public class RxHttpReponseCompat {
                 }).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io());
             }
         };
+
     }
 }
