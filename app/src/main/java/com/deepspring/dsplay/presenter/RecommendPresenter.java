@@ -44,7 +44,6 @@ public class RecommendPresenter extends BasePresenter<RecommendModel,RecommendCo
 
                             return Observable.empty();
                         }
-
                     }
                 })
                 .subscribe(new ProgressDialogSubcriber<PageBean<AppInfo>>(mContext) {
