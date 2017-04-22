@@ -6,7 +6,7 @@ import android.app.Activity;
 import com.deepspring.dsplay.bean.AppInfo;
 import com.deepspring.dsplay.bean.PageBean;
 import com.deepspring.dsplay.common.rx.RxHttpReponseCompat;
-import com.deepspring.dsplay.common.rx.subscriber.ProgressDialogSubcriber;
+import com.deepspring.dsplay.common.rx.subscriber.ProgressSubcriber;
 import com.deepspring.dsplay.data.RecommendModel;
 import com.deepspring.dsplay.presenter.contract.RecommendContract;
 import com.tbruyelle.rxpermissions.RxPermissions;
@@ -46,7 +46,7 @@ public class RecommendPresenter extends BasePresenter<RecommendModel,RecommendCo
                         }
                     }
                 })
-                .subscribe(new ProgressDialogSubcriber<PageBean<AppInfo>>(mContext) {
+                .subscribe(new ProgressSubcriber<PageBean<AppInfo>>(mContext,mView) {
                     @Override
                     public void onNext(PageBean<AppInfo> appInfoPageBean) {
                         mView.showResult(appInfoPageBean.getDatas());

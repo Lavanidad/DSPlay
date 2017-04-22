@@ -26,7 +26,7 @@ import butterknife.BindView;
  * Created by Anonym on 2017/2/27.
  */
 
-public class RecommendFragment extends BaseFragment<RecommendPresenter> implements RecommendContract.View{
+public class RecommendFragment extends ProgressFragment<RecommendPresenter> implements RecommendContract.View{
 
     @BindView(R.id.recycle_view)
     RecyclerView mRecyclerView;
@@ -50,7 +50,11 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter> implemen
     @Override
     public void init() {
         mPresenter.requestDatas();
+    }
 
+    @Override
+    public void onEmptyViewClick() {
+        mPresenter.requestDatas();
     }
 
     private void initRecycleView(List<AppInfo> datas){
@@ -64,13 +68,11 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter> implemen
         //动画
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-
         mAdatper = new RecommendAppAdatper(getActivity(),datas);
 
         mRecyclerView.setAdapter(mAdatper);
 
     }
-
 
     @Override
     public void showResult(List<AppInfo> datas) {
@@ -101,17 +103,4 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter> implemen
         Toast.makeText(getActivity(),"你已拒绝授权",Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void showLoading() {
-
-        mProgressDialog.show();
-    }
-
-    @Override
-    public void dimissLoading() {
-
-        if(mProgressDialog.isShowing()){
-            mProgressDialog.dismiss();
-        }
-    }
 }

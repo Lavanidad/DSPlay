@@ -1,6 +1,5 @@
 package com.deepspring.dsplay.ui.fragment;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -25,11 +24,9 @@ import butterknife.Unbinder;
 public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements BaseView {
     private Unbinder mUnbinder;
     private AppApplication mApplication;
+    private View mRootView;
     @Inject
     T  mPresenter;
-
-    private View mRootView;
-    private ProgressDialog mProgressDialog;
 
     @Nullable
     @Override
@@ -56,21 +53,20 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         }
     }
 
+    @Override
+    public void showLoading() {
+    }
+
+    @Override
+    public void showError(String msg) {
+    }
+
+    @Override
+    public void dismissLoading() {
+    }
+
     public abstract int setLayout();
     public abstract void setUpActivityComponent(AppComponent appComponent);
     public  abstract void init();
 
-    @Override
-    public void showLoading() {
-        mProgressDialog = new ProgressDialog(getActivity());
-        mProgressDialog.setMessage("loading...");
-        mProgressDialog.show();
-    }
-
-    @Override
-    public void dimissLoading() {
-        if(mProgressDialog.isShowing()){
-            mProgressDialog.dismiss();
-        }
-    }
 }

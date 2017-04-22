@@ -12,6 +12,10 @@ import android.widget.TextView;
 import com.deepspring.dsplay.AppApplication;
 import com.deepspring.dsplay.R;
 import com.deepspring.dsplay.di.component.AppComponent;
+import com.deepspring.dsplay.presenter.BasePresenter;
+import com.deepspring.dsplay.ui.BaseView;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -20,7 +24,7 @@ import butterknife.Unbinder;
  * Created by Anonym on 2017/4/19.
  */
 
-public abstract class ProgressFragment extends Fragment {
+public abstract class ProgressFragment<T extends BasePresenter> extends Fragment implements BaseView {
 
     private FrameLayout mRootView;
     private View mViewProgress;
@@ -29,6 +33,8 @@ public abstract class ProgressFragment extends Fragment {
     private Unbinder mUnbinder;
     private TextView mTextError;
     private AppApplication mApplication;
+    @Inject
+    T  mPresenter;
 
     @Nullable
     @Override
@@ -105,6 +111,21 @@ public abstract class ProgressFragment extends Fragment {
         if (mUnbinder!=Unbinder.EMPTY){
             mUnbinder.unbind();
         }
+    }
+
+    @Override
+    public void showLoading() {
+        showProgressView();
+    }
+
+    @Override
+    public void showError(String msg) {
+        showEmptyView(msg);
+    }
+
+    @Override
+    public void dismissLoading() {
+        showContentView();
     }
 
     public abstract int setLayout();
