@@ -36,7 +36,6 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter> implemen
     @Inject
     ProgressDialog mProgressDialog;
 
-
     @Override
     public int setLayout() {
         return R.layout.fragment_recomend;
@@ -54,14 +53,10 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter> implemen
 
     }
 
-
     private void initRecycleView(List<AppInfo> datas){
-
 
         //为RecyclerView设置布局管理器
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
 
         //为RecyclerView设置分割线(这个可以对DividerItemDecoration进行修改，自定义)
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL_LIST));
@@ -74,14 +69,11 @@ public class RecommendFragment extends BaseFragment<RecommendPresenter> implemen
 
         mRecyclerView.setAdapter(mAdatper);
 
-
-
     }
 
 
     @Override
     public void showResult(List<AppInfo> datas) {
-
         Toast.makeText(getActivity(),"小豆子好",Toast.LENGTH_LONG).show();
         initRecycleView( datas);
     }

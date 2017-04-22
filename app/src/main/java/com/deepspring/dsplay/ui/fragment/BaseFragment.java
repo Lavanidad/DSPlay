@@ -56,7 +56,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         }
     }
 
-    abstract int setLayout();
+    public abstract int setLayout();
     public abstract void setUpActivityComponent(AppComponent appComponent);
     public  abstract void init();
 
