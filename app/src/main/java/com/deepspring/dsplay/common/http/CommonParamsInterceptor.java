@@ -33,10 +33,8 @@ public class CommonParamsInterceptor implements Interceptor {
     private Context mContext;
 
     public CommonParamsInterceptor(Context context,Gson gson){
-
         this.mContext = context;
         this.mGson = gson;
-
     }
 
     @Override
@@ -89,9 +87,7 @@ public class CommonParamsInterceptor implements Interceptor {
                 }
                 else{
                     Buffer buffer = new Buffer();
-
                     body.writeTo(buffer);
-
                     String oldJsonParams =  buffer.readUtf8();
 
                     rootMap = mGson.fromJson(oldJsonParams,HashMap.class); // 原始参数
@@ -99,7 +95,6 @@ public class CommonParamsInterceptor implements Interceptor {
                     String newJsonParams = mGson.toJson(rootMap); // {"page":0,"publicParams":{"imei":'xxxxx',"sdk":14,.....}}
 
                     request = request.newBuilder().post(RequestBody.create(JSON, newJsonParams)).build();
-
                 }
             }
         } catch (JsonSyntaxException e) {

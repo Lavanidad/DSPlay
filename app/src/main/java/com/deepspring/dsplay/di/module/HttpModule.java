@@ -49,12 +49,10 @@ public class HttpModule {
 
         return builder
                 .addInterceptor(new CommonParamsInterceptor(application,gson))
-
                 // 连接超时时间设置
                 .connectTimeout(10, TimeUnit.SECONDS)
                 // 读取超时时间设置
                 .readTimeout(10, TimeUnit.SECONDS)
-
                 .build();
 
     }
@@ -73,7 +71,6 @@ public class HttpModule {
         return builder.build();
 
     }
-
 
     @Provides
     @Singleton
