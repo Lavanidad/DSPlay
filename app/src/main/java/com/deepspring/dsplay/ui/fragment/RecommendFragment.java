@@ -98,7 +98,6 @@ public class RecommendFragment extends ProgressFragment<RecommendPresenter> impl
 
     @Override
     public void onRequestPermissonError() {
-
         Toast.makeText(getActivity(),"你已拒绝授权",Toast.LENGTH_LONG).show();
     }
 
