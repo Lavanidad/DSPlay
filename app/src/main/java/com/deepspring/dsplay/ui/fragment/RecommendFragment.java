@@ -93,7 +93,6 @@ public class RecommendFragment extends ProgressFragment<RecommendPresenter> impl
 
     @Override
     public void onRequestPermissonSuccess() {
-
         mPresenter.requestDatas();
     }
 

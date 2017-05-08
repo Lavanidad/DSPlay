@@ -38,10 +38,8 @@ public class RecommendPresenter extends BasePresenter<RecommendModel,RecommendCo
                     public Observable<PageBean<AppInfo>> call(Boolean aBoolean) {
 
                         if (aBoolean) {
-
                             return mModel.getApps().compose(RxHttpReponseCompat.<PageBean<AppInfo>>compatResult());
                         } else {
-
                             return Observable.empty();
                         }
                     }
