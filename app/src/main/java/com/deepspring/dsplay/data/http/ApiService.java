@@ -3,6 +3,7 @@ package com.deepspring.dsplay.data.http;
 
 import com.deepspring.dsplay.bean.AppInfo;
 import com.deepspring.dsplay.bean.BaseBean;
+import com.deepspring.dsplay.bean.IndexBean;
 import com.deepspring.dsplay.bean.PageBean;
 import com.deepspring.dsplay.bean.requestbean.LoginRequestBean;
 
@@ -35,6 +36,12 @@ public interface ApiService {
     @FormUrlEncoded // FormBody
     @POST("login")
     public   void login2(@Field("phone") String phone);
+
+    @GET("index")
+    public Observable<BaseBean<IndexBean>> index();
+
+    @GET("toplist")
+    public Observable<BaseBean<AppInfo>> toplist(@Query("page") int page);
 
 
 }

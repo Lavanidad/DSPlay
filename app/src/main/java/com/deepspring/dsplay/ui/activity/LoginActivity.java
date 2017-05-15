@@ -35,7 +35,6 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-
     @Override
     public void init() {
 
@@ -50,7 +49,6 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.btn)
     public void onClick() {
-
 
         RxPermissions rxPermissions = new RxPermissions(this);
 
