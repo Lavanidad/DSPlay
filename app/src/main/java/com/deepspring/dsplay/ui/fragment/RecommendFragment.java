@@ -7,16 +7,13 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.deepspring.dsplay.R;
-import com.deepspring.dsplay.bean.AppInfo;
+import com.deepspring.dsplay.bean.IndexBean;
 import com.deepspring.dsplay.di.component.AppComponent;
 import com.deepspring.dsplay.di.component.DaggerRecommendComponent;
 import com.deepspring.dsplay.di.module.RemmendModule;
 import com.deepspring.dsplay.presenter.RecommendPresenter;
 import com.deepspring.dsplay.presenter.contract.RecommendContract;
-import com.deepspring.dsplay.ui.adapter.RecommendAppAdatper;
-import com.deepspring.dsplay.ui.decoration.DividerItemDecoration;
-
-import java.util.List;
+import com.deepspring.dsplay.ui.adapter.IndexMutilAdapter;
 
 import javax.inject.Inject;
 
@@ -31,7 +28,7 @@ public class RecommendFragment extends ProgressFragment<RecommendPresenter> impl
     @BindView(R.id.recycle_view)
     RecyclerView mRecyclerView;
 
-    private RecommendAppAdatper mAdatper;
+    private IndexMutilAdapter mAdatper;
 
     @Inject
     ProgressDialog mProgressDialog;
@@ -49,6 +46,7 @@ public class RecommendFragment extends ProgressFragment<RecommendPresenter> impl
 
     @Override
     public void init() {
+        initRecycleView();
         mPresenter.requestDatas();
     }
 
@@ -57,33 +55,21 @@ public class RecommendFragment extends ProgressFragment<RecommendPresenter> impl
         mPresenter.requestDatas();
     }
 
-    private void initRecycleView(List<AppInfo> datas){
+    private void initRecycleView(){
 
         //为RecyclerView设置布局管理器
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        //为RecyclerView设置分割线(这个可以对DividerItemDecoration进行修改，自定义)
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL_LIST));
-
         //动画
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        mAdatper = new RecommendAppAdatper(getActivity(),datas);
+    }
 
+    @Override
+    public void showResult(IndexBean indexBean) {
+        mAdatper = new IndexMutilAdapter(getActivity());
+        mAdatper.setData(indexBean);
         mRecyclerView.setAdapter(mAdatper);
-
-    }
-
-    @Override
-    public void showResult(List<AppInfo> datas) {
-        Toast.makeText(getActivity(),"小豆子好",Toast.LENGTH_LONG).show();
-        initRecycleView( datas);
-    }
-
-    @Override
-    public void showNodata() {
-
-        Toast.makeText(getActivity(),"暂时无数据，请吃完饭再来",Toast.LENGTH_LONG).show();
     }
 
     @Override

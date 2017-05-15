@@ -1,6 +1,6 @@
 package com.deepspring.dsplay.ui.activity;
 
-import android.os.Bundle;
+import android.Manifest;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
@@ -13,11 +13,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.deepspring.dsplay.R;
+import com.deepspring.dsplay.common.util.PermissionUtil;
 import com.deepspring.dsplay.di.component.AppComponent;
 import com.deepspring.dsplay.ui.adapter.ViewPagerAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.functions.Action1;
 
 public class MainActivity extends BaseActivity {
     @BindView(R.id.navigation_view)
@@ -33,14 +35,6 @@ public class MainActivity extends BaseActivity {
     private View headerView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        ButterKnife.bind(this);
-        init();
-    }
-
-    @Override
     public int setLayout() {
         return R.layout.activity_main;
     }
@@ -52,10 +46,22 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void init() {
-        initDrawerLayout();
-        initTablayout();
-    }
 
+        PermissionUtil.requestPermisson(this, Manifest.permission.READ_PHONE_STATE)
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean aBoolean) {
+
+                        if(aBoolean){
+                            initDrawerLayout();
+
+                            initTablayout();
+                        }else {
+                            //------
+                        }
+                    }
+                });
+    }
     private void initTablayout() {
 
         PagerAdapter adapter=new ViewPagerAdapter(getSupportFragmentManager());
