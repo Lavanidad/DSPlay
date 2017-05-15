@@ -86,7 +86,7 @@ public class IndexMutilAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 2;
     }
 
     @Override
@@ -128,7 +128,7 @@ public class IndexMutilAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         @Override
         public void displayImage(Context context, String path, ImageView imageView) {
-            ImageLoader.load(path, imageView);
+            com.deepspring.dsplay.common.Imageloader.ImageLoader.load(path,imageView);
         }
     }
 }
