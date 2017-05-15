@@ -5,12 +5,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.deepspring.dsplay.R;
+import com.deepspring.dsplay.bean.Banner;
 import com.deepspring.dsplay.bean.IndexBean;
 import com.deepspring.dsplay.ui.widget.BannerLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Anonym on 2017/5/15.
@@ -22,8 +28,6 @@ public class IndexMutilAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public static final int TYPE_ICON = 2;
     public static final int TYPE_APPS = 3;
     public static final int TYPE_GAMES = 4;
-    @BindView(R.id.banner)
-    BannerLayout mBanner;
 
     private IndexBean mIndexBean;
     private LayoutInflater mLayoutInflater;
@@ -64,6 +68,18 @@ public class IndexMutilAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (position == 0) {
             BannerViewHolder bannerViewHolder = (BannerViewHolder) holder;
+            List<Banner> banners = mIndexBean.getBanners();
+            List<String> urls = new ArrayList<>(banners.size());
+            for(Banner banner : banners) {
+                urls.add(banner.getThumbnail());
+            }
+            bannerViewHolder.mBanner.setViewUrls(urls);
+            bannerViewHolder.mBanner.setImageLoader(new BannerLayout.ImageLoader() {
+                @Override
+                public void displayImage(Context context, String path, ImageView imageView) {
+
+                }
+            });
         }
     }
 
@@ -73,9 +89,11 @@ public class IndexMutilAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     class BannerViewHolder extends RecyclerView.ViewHolder {
-
+        @BindView(R.id.banner)
+        BannerLayout mBanner;
         public BannerViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this.itemView);
         }
     }
 
