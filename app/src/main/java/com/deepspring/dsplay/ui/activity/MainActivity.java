@@ -46,15 +46,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void init() {
-
         PermissionUtil.requestPermisson(this, Manifest.permission.READ_PHONE_STATE)
                 .subscribe(new Action1<Boolean>() {
                     @Override
                     public void call(Boolean aBoolean) {
-
                         if(aBoolean){
                             initDrawerLayout();
-
                             initTablayout();
                         }else {
                             //------

@@ -1,12 +1,14 @@
 package com.deepspring.dsplay.ui.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.deepspring.dsplay.R;
 import com.deepspring.dsplay.bean.Banner;
@@ -29,7 +31,6 @@ public class IndexMutilAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public static final int TYPE_ICON = 2;
     public static final int TYPE_APPS = 3;
     public static final int TYPE_GAMES = 4;
-
 
     private IndexBean mIndexBean;
     private LayoutInflater mLayoutInflater;
@@ -62,6 +63,10 @@ public class IndexMutilAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             return new BannerViewHolder(mLayoutInflater.inflate(R.layout.template_banner, parent, false));
         } else if (viewType == TYPE_ICON) {
             return new NavIconViewHolder(mLayoutInflater.inflate(R.layout.template_nav_icon, parent, false));
+        } else if (viewType == TYPE_APPS) {
+            return new AppViewHolder(mLayoutInflater.inflate(R.layout.template_recyleview_with_title, parent, false), TYPE_APPS);
+        } else if (viewType == TYPE_GAMES) {
+            return new AppViewHolder(mLayoutInflater.inflate(R.layout.template_recyleview_with_title, parent, false), TYPE_GAMES);
         }
         return null;
     }
@@ -121,6 +126,32 @@ public class IndexMutilAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         public NavIconViewHolder(View view) {
             super(view);
             ButterKnife.bind(this,view);
+        }
+    }
+
+    class AppViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.text)
+        TextView mText;
+        @BindView(R.id.recycle_view)
+        RecyclerView mRecyclerView;
+        int type;
+
+        public AppViewHolder(View itemView, int type) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            this.type = type;
+            initRecycleView();
+        }
+
+        private void initRecycleView() {
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(Context) {
+                @Override
+                public boolean canScrollVertically() {
+                    return false;
+                }
+                //TODO
+            });
         }
     }
 
